@@ -1,0 +1,65 @@
+<mat-grid-list class="bord" [cols]="cols | async" [rowHeight]="rowHeightSetter()" >
+  <mat-grid-tile class="borda main-tile" *ngFor="let pic of pics">
+    <mat-card class="product_tab">
+            <mat-card-content class="content">
+              <img  mat-card-image src='https://unsplash.com/photos/Cm7oKel-X2Q' alt="cool">
+              <img src="{{pic.post_url}}" alt="">
+            </mat-card-content>
+            <mat-card-title class="title">
+              {{pic.author}}
+            </mat-card-title>
+            <mat-card-subtitle class="subtitle">
+              {{pic.post_url}}
+            </mat-card-subtitle>
+            <mat-card-actions class="card_action">
+                <a routerLink="/main/product">View</a>
+                <a routerLink="/main/product">Add </a>
+                <a routerLink="/main/product">Like</a>
+                <a routerLink="/main/product">Share</a>
+            </mat-card-actions>
+      <!--author:"Alejandro Escamilla"-->
+      <!--filename:"0000_yC-Yzbqy7PY.jpeg"-->
+      <!--format:"jpeg"-->
+      <!--height:3744-->
+      <!--id:0-->
+      <!--post_url:"https://unsplash.com/photos/yC-Yzbqy7PY"-->
+      <!--width:5616-->
+    </mat-card>
+  </mat-grid-tile>
+  <!--<mat-grid-tile class="borda">2</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bord">3</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bordb">4</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bord">1</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bord">2</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bordb">3</mat-grid-tile>-->
+  <!--<mat-grid-tile class="borda">4</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bord">1</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bordb">2</mat-grid-tile>-->
+  <!--<mat-grid-tile class="borda">3</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bord">4</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bord">1</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bordb">2</mat-grid-tile>-->
+  <!--<mat-grid-tile class="borda">3</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bordb">4</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bord">1</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bordb">2</mat-grid-tile>-->
+  <!--<mat-grid-tile class="borda">3</mat-grid-tile>-->
+  <!--<mat-grid-tile class="bord">4</mat-grid-tile>-->
+</mat-grid-list>
+<!--<cdk-virtual-scroll-viewport class="list-container list-group" autosize>-->
+    <!--<div *cdkVirtualFor="let size of p; let i = index"-->
+         <!--class="list-group-item"-->
+         <!--[style.height.px]="size">-->
+        <!--Item {{i}}lol-->
+    <!--</div>-->
+<!--</cdk-virtual-scroll-viewport>-->
+
+<virtual-scroll [items]="items" (update)="viewPortItems = $event">
+    <div *ngFor="let item of viewPortItems" [item]="item">{{item}}</div>
+</virtual-scroll>
+
+<virtual-scroll [items]="buffer" (update)="scrollItems = $event"
+                (change)="onListChange($event)">
+    <list-item *ngFor="let item of scrollItems" [item]="item"> </list-item>
+    <div *ngIf="loading" class="loader">Loading...</div>
+</virtual-scroll>
